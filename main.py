@@ -49,5 +49,5 @@ class TestUrbanRoutes:
     def test_car_search_model_appears(self):
         # Adicionar em S8
         print("funçao criada para definir a rota")
-        pas
+        pass
 
