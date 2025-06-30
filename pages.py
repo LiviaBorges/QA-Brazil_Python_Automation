@@ -15,7 +15,7 @@ class UrbanRoutesPage:
     comfort_active = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[1]/div[5]')
 
     # Preencher o numero de telefone
-    number_text_locator = (By.CSS_SELECTOR, '.np-button')
+    add_phone_number = (By.CSS_SELECTOR, '.np-button')
     number_enter = (By.ID, 'phone')
     number_confirm = (By.CSS_SELECTOR, '.button.full')
     number_code = (By.ID, 'code')
@@ -89,7 +89,7 @@ class UrbanRoutesPage:
         except: return False
 
     def click_number_text(self):
-        self.driver.find_element(*self.number_text_locator).click()
+        self.driver.find_element(*self.add_phone_number).click()
         self.driver.find_element(*self.number_enter).send_keys("telefone")
         self.driver.find_element(*self.number_confirm).click()
         code = retrieve_phone_code(self.driver)
@@ -129,7 +129,7 @@ class UrbanRoutesPage:
         switch_active.click()
 
     def switch_cobertor_ativo(self):
-        switch = WebDriverWait(*self.driver, 132).until(
+        switch = WebDriverWait(*self.driver, 10).until(
             Ec.presence_of_element_located(self.switch_blanket))
         return switch.is_selected()
 
