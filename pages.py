@@ -23,7 +23,7 @@ class UrbanRoutesPage:
     number_finish = (By.CSS_SELECTOR, '.np-text')
 
     # Adicionar um cartao de credito
-    add_forma_pagamento = (By.CSS_SELECTOR, 'pp-button.filled')
+    add_forma_pagamento = (By.CSS_SELECTOR, '.pp-button.filled')
     add_card = (By.CSS_SELECTOR, '.pp-plus')
     number_card = (By.ID, 'number')
     code_card = (By.CSS_SELECTOR, 'input.card-input#code')
@@ -88,14 +88,19 @@ class UrbanRoutesPage:
             return "active" in active_button.get_attribute("class")
         except: return False
 
-    def click_number_text(self):
-        self.driver.find_element(*self.add_phone_number).click()
-        self.driver.find_element(*self.number_enter).send_keys("telefone")
+    def click_number_text(self, telefone):
+        self.driver.find_element(*self.number_text_locator).click()
+        self.driver.find_element(*self.number_enter).send_keys(telefone)
         self.driver.find_element(*self.number_confirm).click()
+
         code = retrieve_phone_code(self.driver)
-        code_input = WebDriverWait(self.driver, 3).until(Ec.visibility_of_element_located(self.number_code))
+
+        code_input = WebDriverWait(self.driver, 3).until(
+            Ec.visibility_of_element_located(self.number_code)
+        )
         code_input.clear()
         code_input.send_keys(code)
+
         self.driver.find_element(*self.code_confirm).click()
 
     def numero_telefone_confirmado(self):

@@ -2,7 +2,7 @@ import time
 
 from pages import UrbanRoutesPage
 from selenium.webdriver import Chrome
-from selenium.wedriver.common.by import By
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as Ec
 from selenium.webdriver.support.ui import WebDriverWait
 import data
@@ -57,7 +57,7 @@ class TestUrbanRoutes:
         routes_page.click_taxi()
         routes_page.click_comfort_icon()
         routes_page.click_add_card(data.CARD_NUMBER, data.CARD_CODE)
-        assert "Card" in routes_page.confirm_card()
+        assert "Card" in routes_page.confirm_cartao()
 
 
 
@@ -67,7 +67,7 @@ class TestUrbanRoutes:
         routes_page.enter_locations(data.ADDRESS_FROM, data.ADDRESS_TO)
         routes_page.click_taxi()
         routes_page.click_comfort_icon()
-        routes_page.add_comment(data.MESSAGE_FOR_DRIVER)
+        routes_page.add_commentario(data.MESSAGE_FOR_DRIVER)
         assert data.MESSAGE_FOR_DRIVER in routes_page.comment_confirm()
 
     def test_order_blanket_and_handkerchiefs(self):
